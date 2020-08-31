@@ -21,7 +21,7 @@
   opacity: 0;
   text-align: center;
   font-weight: 600;
-  animation: appear 2.5s ease;
+  animation: appear 2s ease;
   animation-fill-mode: forwards;
 
   &:nth-of-type(2) {
@@ -36,6 +36,6 @@
 .buttonWrapper {
   opacity: 0;
   margin: 67px auto 0;
-  animation: appear 2.5s 3s ease;
+  animation: appear 2s 3s ease;
   animation-fill-mode: forwards;
 }
