@@ -4,7 +4,7 @@ import styles from "./QuestionView.module.scss";
 
 import Radio from "../../components/Radio/Radio";
 
-//TODO: Add pickaxe lifebelt and progressbar
+//TODO: Add pickaxe lifebelt, progressbar next button
 
 class QuestionView extends React.Component {
   changeSelection = (e) => console.log(e.target.value);
@@ -18,10 +18,7 @@ class QuestionView extends React.Component {
           alt="mystery"
         />
         <div className={styles.questionText}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni,
-          corrupti. Rem atque veniam recusandae explicabo ipsa omnis sunt rerum,
-          ea, suscipit minima voluptatum. Sunt veritatis pariatur, itaque fuga
-          alias ut!
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         </div>
         <div className={styles.answearWrapper} onChange={this.changeSelection}>
           <Radio name="answear" value="A">

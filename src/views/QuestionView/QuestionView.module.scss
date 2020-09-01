@@ -7,10 +7,24 @@
 
 .questionImage {
   max-height: 280px;
-  margin-bottom: 20px;
+  max-width: 100%;
+  margin-bottom: 30px;
 }
 
 .questionText {
   text-align: center;
   font-weight: 600;
+}
+
+.answearWrapper {
+  display: grid;
+  grid-gap: 10px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+@media (min-width: 800px) {
+  .answearWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

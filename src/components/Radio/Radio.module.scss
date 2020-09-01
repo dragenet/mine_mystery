@@ -1,5 +1,6 @@
 .radio {
   display: block;
+  width: 100%;
   background-color: #1d1d1d;
   color: white;
   font-weight: 600;
@@ -8,6 +9,7 @@
   border-radius: 5em;
   outline: none;
   cursor: pointer;
+  text-align: center;
 }
 
 input {
