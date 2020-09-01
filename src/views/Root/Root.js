@@ -15,7 +15,7 @@ const pages = {
 
 class Root extends React.Component {
   state = {
-    currentPage: pages.startPage,
+    currentPage: pages.questionPage,
   };
 
   nextPage = () => {

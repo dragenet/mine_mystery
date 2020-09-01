@@ -1,0 +1,21 @@
+.radio {
+  display: block;
+  background-color: #1d1d1d;
+  color: white;
+  font-weight: 600;
+  padding: 15px;
+  border: none;
+  border-radius: 5em;
+  outline: none;
+  cursor: pointer;
+}
+
+input {
+  display: none;
+
+  &:checked + .radio {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+  }
+}
