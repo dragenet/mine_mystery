@@ -37,6 +37,7 @@
   position: fixed;
   bottom: 55px;
   width: 100%;
+  z-index: -1;
 }
 
 @media (min-height: 700px) {
