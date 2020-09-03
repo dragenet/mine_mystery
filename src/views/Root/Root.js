@@ -16,7 +16,7 @@ const pages = {
 
 class Root extends React.Component {
   state = {
-    currentPage: pages.questionPage,
+    currentPage: pages.startPage,
     questions: [
       {
         id: "0",
@@ -74,7 +74,7 @@ class Root extends React.Component {
   render() {
     return (
       <>
-        <NavBar />
+        <NavBar name="Mine Mystery" logoHref="/"/>
         <div className={styles.content}>
           {this.state.currentPage === pages.startPage ? (
             <StartView exitFn={this.nextPage} />
@@ -90,7 +90,7 @@ class Root extends React.Component {
             />
           )}
         </div>
-        <Footer />
+        <Footer href="https://github.com/dragenet/mine_mystery">View source on Github</Footer>
       </>
     );
   }

@@ -2,15 +2,15 @@ import React from "react";
 
 import styles from "./Footer.module.scss";
 
-const Footer = () => (
+const Footer = ({children, href}) => (
   <div className={styles.wrapper}>
     <a
       className={styles.githubLink}
-      href="https://github.com/dragenet"
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
     >
-      View source on Github
+      {children}
     </a>
   </div>
 );
