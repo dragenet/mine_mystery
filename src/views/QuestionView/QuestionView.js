@@ -12,43 +12,64 @@ import { ReactComponent as ForwardIcon } from "../../assets/icons/forward.svg";
 
 class QuestionView extends React.Component {
   state = {
-    progress: 0,
+    progress: 33,
     level: 0,
+    selectedOption: null,
+    answears: [],
   };
 
-  changeSelection = (e) => console.log(e.target.value);
+  changeSelection = (e) =>
+    this.setState({
+      selectedOption: parseInt(e.target.value),
+    });
 
-  handleNext = () => {
+  handleNext = (e) => {
+    const currentAnswear = {
+      id: this.props.questions[this.state.level].id,
+      answear: this.state.selectedOption,
+      isCorrect:
+        this.props.questions[this.state.level].correct ===
+        this.state.selectedOption
+          ? true
+          : false,
+    };
+    if (this.state.level === 2) {
+      console.log(this.state.answears);
+      this.props.exitFn(this.state.answears.concat([currentAnswear]));
+      return;
+    }
     this.setState((prevState) => ({
       level: prevState.level + 1,
-      progress: ((prevState.level + 1) / 3) * 100,
+      progress: ((prevState.level + 2) / 3) * 100,
+      answears: prevState.answears.concat([currentAnswear]),
     }));
   };
 
   render() {
+    const { level } = this.state;
+    const { questions } = this.props;
+
     return (
       <div className={styles.wrapper}>
-        <img
-          className={styles.questionImage}
-          src="https://source.unsplash.com/random/700x400"
-          alt="mystery"
-        />
-        <div className={styles.questionText}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-        </div>
-        <div className={styles.answearWrapper} onChange={this.changeSelection}>
-          <Radio name="answear" value="A">
-            Opcja A
-          </Radio>
-          <Radio name="answear" value="B">
-            Opcja B
-          </Radio>
-          <Radio name="answear" value="C">
-            Opcja C
-          </Radio>
-          <Radio name="answear" value="D">
-            Opcja D
-          </Radio>
+        {questions[level].image ? (
+          <img
+            className={styles.questionImage}
+            src={questions[level].image}
+            alt="mystery"
+          />
+        ) : null}
+
+        <div className={styles.questionText}>{questions[level].question}</div>
+        <div
+          key={questions[level].id}
+          className={styles.answearWrapper}
+          onChange={this.changeSelection}
+        >
+          {questions[level].answears.map((el, i) => (
+            <Radio key={i} name="answear" value={i}>
+              {el}
+            </Radio>
+          ))}
         </div>
         <div className={styles.buttonWrapper}>
           <Button round onClick={this.handleNext}>

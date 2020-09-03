@@ -30,13 +30,13 @@ class Root extends React.Component {
         correct: 0,
       },
       {
-        id: "0",
+        id: "1",
         question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
         answears: ["Lorem ipsum", "dolor sit amet", "adipisicing elit"],
         correct: 0,
       },
       {
-        id: "0",
+        id: "2",
         question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
         image: "https://source.unsplash.com/random/700x400",
         answears: [
@@ -48,9 +48,10 @@ class Root extends React.Component {
         correct: 0,
       },
     ],
+    result: null,
   };
 
-  nextPage = () => {
+  nextPage = (result) => {
     this.setState((prevState) => {
       const newState =
         prevState.currentPage === pages.startPage
@@ -58,6 +59,7 @@ class Root extends React.Component {
           : pages.resultPage;
       return {
         currentPage: newState,
+        result: result,
       };
     });
   };
@@ -70,7 +72,10 @@ class Root extends React.Component {
           {this.state.currentPage === pages.startPage ? (
             <StartView exitFn={this.nextPage} />
           ) : this.state.currentPage === pages.questionPage ? (
-            <QuestionView questions={this.state.questions} />
+            <QuestionView
+              questions={this.state.questions}
+              exitFn={this.nextPage}
+            />
           ) : (
             <h2>Result Page</h2>
           )}
