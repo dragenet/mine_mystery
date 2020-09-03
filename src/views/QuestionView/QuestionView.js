@@ -4,13 +4,26 @@ import styles from "./QuestionView.module.scss";
 
 import Radio from "../../components/Radio/Radio";
 import Button from "../../components/Button/Button";
+import StatusBar from "../../components/StatusBar/StatusBar";
 
 import { ReactComponent as ForwardIcon } from "../../assets/icons/forward.svg";
 
 //TODO: Add pickaxe lifebelt, progressbar next button
 
 class QuestionView extends React.Component {
+  state = {
+    progress: 0,
+    level: 0,
+  };
+
   changeSelection = (e) => console.log(e.target.value);
+
+  handleNext = () => {
+    this.setState((prevState) => ({
+      level: prevState.level + 1,
+      progress: ((prevState.level + 1) / 3) * 100,
+    }));
+  };
 
   render() {
     return (
@@ -38,10 +51,13 @@ class QuestionView extends React.Component {
           </Radio>
         </div>
         <div className={styles.buttonWrapper}>
-          <Button round>
+          <Button round onClick={this.handleNext}>
             {/* <img src={forwardIcon} /> */}
             <ForwardIcon />
           </Button>
+        </div>
+        <div className={styles.statusWrapper}>
+          <StatusBar status={this.state.progress} />
         </div>
       </div>
     );

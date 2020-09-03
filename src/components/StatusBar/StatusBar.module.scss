@@ -1,0 +1,21 @@
+$bar-height: 8px;
+
+.wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.path {
+  width: 100%;
+  height: $bar-height;
+  background-color: #808080;
+}
+
+.status {
+  position: absolute;
+  top: 0;
+  background-color: white;
+  height: $bar-height;
+  transition: width 2s;
+  width: 0;
+}

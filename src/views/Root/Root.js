@@ -16,6 +16,38 @@ const pages = {
 class Root extends React.Component {
   state = {
     currentPage: pages.questionPage,
+    questions: [
+      {
+        id: "0",
+        question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+        image: "https://source.unsplash.com/random/700x400",
+        answears: [
+          "Lorem ipsum",
+          "dolor sit amet",
+          "adipisicing elit",
+          "Suscipit maiores",
+        ],
+        correct: 0,
+      },
+      {
+        id: "0",
+        question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+        answears: ["Lorem ipsum", "dolor sit amet", "adipisicing elit"],
+        correct: 0,
+      },
+      {
+        id: "0",
+        question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+        image: "https://source.unsplash.com/random/700x400",
+        answears: [
+          "Lorem ipsum",
+          "dolor sit amet",
+          "adipisicing elit",
+          "Suscipit maiores",
+        ],
+        correct: 0,
+      },
+    ],
   };
 
   nextPage = () => {
@@ -38,7 +70,7 @@ class Root extends React.Component {
           {this.state.currentPage === pages.startPage ? (
             <StartView exitFn={this.nextPage} />
           ) : this.state.currentPage === pages.questionPage ? (
-            <QuestionView />
+            <QuestionView questions={this.state.questions} />
           ) : (
             <h2>Result Page</h2>
           )}
