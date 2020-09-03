@@ -6,6 +6,7 @@ import styles from "./Radio.module.scss";
 
 const Radio = ({ children, name, value }) => {
   const id = shortid.generate();
+
   return (
     <div>
       <input id={id} type="radio" name={name} value={value} />
