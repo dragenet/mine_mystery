@@ -5,6 +5,7 @@ import styles from "./QuestionView.module.scss";
 import Radio from "../../components/Radio/Radio";
 import Button from "../../components/Button/Button";
 import StatusBar from "../../components/StatusBar/StatusBar";
+import Modal from "../../components/Modal/Modal";
 
 import { ReactComponent as ForwardIcon } from "../../assets/icons/forward.svg";
 
@@ -16,6 +17,7 @@ class QuestionView extends React.Component {
     level: 0,
     selectedOption: null,
     answears: [],
+    isModalOpen: false,
   };
 
   changeSelection = (e) =>
@@ -24,6 +26,12 @@ class QuestionView extends React.Component {
     });
 
   handleNext = (e) => {
+    if (this.state.selectedOption === null) {
+      this.setState({
+        isModalOpen: true,
+      });
+      return;
+    }
     const currentAnswear = {
       id: this.props.questions[this.state.level].id,
       answear: this.state.selectedOption,
@@ -42,11 +50,18 @@ class QuestionView extends React.Component {
       level: prevState.level + 1,
       progress: ((prevState.level + 2) / 3) * 100,
       answears: prevState.answears.concat([currentAnswear]),
+      selectedOption: null,
     }));
   };
 
+  closeModal = () => {
+    this.setState({
+      isModalOpen: false,
+    });
+  };
+
   render() {
-    const { level } = this.state;
+    const { level, isModalOpen } = this.state;
     const { questions } = this.props;
 
     return (
@@ -80,6 +95,9 @@ class QuestionView extends React.Component {
         <div className={styles.statusWrapper}>
           <StatusBar status={this.state.progress} />
         </div>
+        {isModalOpen && (
+          <Modal close={this.closeModal}>Musisz wybrać odpowiedż!</Modal>
+        )}
       </div>
     );
   }
