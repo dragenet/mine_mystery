@@ -6,6 +6,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import StartView from "../StartView/StartView";
 import QuestionView from "../QuestionView/QuestionView";
+import ResultView from "../ResultView/ResultView";
 
 const pages = {
   startPage: "startPage",
@@ -64,6 +65,12 @@ class Root extends React.Component {
     });
   };
 
+  startAgain = () => {
+    this.setState({
+      currentPage: pages.startPage,
+    });
+  };
+
   render() {
     return (
       <>
@@ -77,7 +84,10 @@ class Root extends React.Component {
               exitFn={this.nextPage}
             />
           ) : (
-            <h2>Result Page</h2>
+            <ResultView
+              result={this.state.result}
+              startAgainFn={this.startAgain}
+            />
           )}
         </div>
         <Footer />
