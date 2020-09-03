@@ -3,6 +3,9 @@ import React from "react";
 import styles from "./QuestionView.module.scss";
 
 import Radio from "../../components/Radio/Radio";
+import Button from "../../components/Button/Button";
+
+import { ReactComponent as ForwardIcon } from "../../assets/icons/forward.svg";
 
 //TODO: Add pickaxe lifebelt, progressbar next button
 
@@ -33,6 +36,12 @@ class QuestionView extends React.Component {
           <Radio name="answear" value="D">
             Opcja D
           </Radio>
+        </div>
+        <div className={styles.buttonWrapper}>
+          <Button round>
+            {/* <img src={forwardIcon} /> */}
+            <ForwardIcon />
+          </Button>
         </div>
       </div>
     );
