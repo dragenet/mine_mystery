@@ -18,38 +18,6 @@ const pages = {
 class Root extends React.Component {
   state = {
     currentPage: pages.startPage,
-    // questions: [
-    //   {
-    //     id: "0",
-    //     question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    //     image: "https://source.unsplash.com/random/700x400",
-    //     answears: [
-    //       "Lorem ipsum",
-    //       "dolor sit amet",
-    //       "adipisicing elit",
-    //       "Suscipit maiores",
-    //     ],
-    //     correct: 0,
-    //   },
-    //   {
-    //     id: "1",
-    //     question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    //     answears: ["Lorem ipsum", "dolor sit amet", "adipisicing elit"],
-    //     correct: 0,
-    //   },
-    //   {
-    //     id: "2",
-    //     question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    //     image: "https://source.unsplash.com/random/700x400",
-    //     answears: [
-    //       "Lorem ipsum",
-    //       "dolor sit amet",
-    //       "adipisicing elit",
-    //       "Suscipit maiores",
-    //     ],
-    //     correct: 0,
-    //   },
-    // ],
     questions: null,
     result: null,
   };
@@ -58,7 +26,6 @@ class Root extends React.Component {
     axios
       .get("https://us-central1-mine-mystery.cloudfunctions.net/getRandom")
       .then((res) => {
-        console.log(res.data);
         this.setState({
           questions: res.data,
         });

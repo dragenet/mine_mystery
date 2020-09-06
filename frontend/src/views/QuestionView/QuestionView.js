@@ -9,8 +9,6 @@ import Modal from "../../components/Modal/Modal";
 
 import { ReactComponent as ForwardIcon } from "../../assets/icons/forward.svg";
 
-//TODO: Add pickaxe lifebelt, progressbar next button
-
 class QuestionView extends React.Component {
   state = {
     progress: 33,
@@ -88,7 +86,6 @@ class QuestionView extends React.Component {
         </div>
         <div className={styles.buttonWrapper}>
           <Button round onClick={this.handleNext}>
-            {/* <img src={forwardIcon} /> */}
             <ForwardIcon />
           </Button>
         </div>
