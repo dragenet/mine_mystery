@@ -16,7 +16,7 @@ class QuestionView extends React.Component {
     progress: 33,
     level: 0,
     selectedOption: null,
-    answears: [],
+    answers: [],
     isModalOpen: false,
   };
 
@@ -32,9 +32,9 @@ class QuestionView extends React.Component {
       });
       return;
     }
-    const currentAnswear = {
+    const currentAnswer = {
       id: this.props.questions[this.state.level].id,
-      answear: this.state.selectedOption,
+      answer: this.state.selectedOption,
       isCorrect:
         this.props.questions[this.state.level].correct ===
         this.state.selectedOption
@@ -42,14 +42,14 @@ class QuestionView extends React.Component {
           : false,
     };
     if (this.state.level === 2) {
-      console.log(this.state.answears);
-      this.props.exitFn(this.state.answears.concat([currentAnswear]));
+      console.log(this.state.answers);
+      this.props.exitFn(this.state.answers.concat([currentAnswer]));
       return;
     }
     this.setState((prevState) => ({
       level: prevState.level + 1,
       progress: ((prevState.level + 2) / 3) * 100,
-      answears: prevState.answears.concat([currentAnswear]),
+      answers: prevState.answers.concat([currentAnswer]),
       selectedOption: null,
     }));
   };
@@ -77,11 +77,11 @@ class QuestionView extends React.Component {
         <div className={styles.questionText}>{questions[level].question}</div>
         <div
           key={questions[level].id}
-          className={styles.answearWrapper}
+          className={styles.answerWrapper}
           onChange={this.changeSelection}
         >
-          {questions[level].answears.map((el, i) => (
-            <Radio key={i} name="answear" value={i}>
+          {questions[level].answers.map((el, i) => (
+            <Radio key={i} name="answer" value={i}>
               {el}
             </Radio>
           ))}

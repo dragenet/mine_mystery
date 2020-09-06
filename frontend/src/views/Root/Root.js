@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 import styles from "./Root.module.scss";
 
@@ -17,40 +18,52 @@ const pages = {
 class Root extends React.Component {
   state = {
     currentPage: pages.startPage,
-    questions: [
-      {
-        id: "0",
-        question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-        image: "https://source.unsplash.com/random/700x400",
-        answears: [
-          "Lorem ipsum",
-          "dolor sit amet",
-          "adipisicing elit",
-          "Suscipit maiores",
-        ],
-        correct: 0,
-      },
-      {
-        id: "1",
-        question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-        answears: ["Lorem ipsum", "dolor sit amet", "adipisicing elit"],
-        correct: 0,
-      },
-      {
-        id: "2",
-        question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-        image: "https://source.unsplash.com/random/700x400",
-        answears: [
-          "Lorem ipsum",
-          "dolor sit amet",
-          "adipisicing elit",
-          "Suscipit maiores",
-        ],
-        correct: 0,
-      },
-    ],
+    // questions: [
+    //   {
+    //     id: "0",
+    //     question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+    //     image: "https://source.unsplash.com/random/700x400",
+    //     answears: [
+    //       "Lorem ipsum",
+    //       "dolor sit amet",
+    //       "adipisicing elit",
+    //       "Suscipit maiores",
+    //     ],
+    //     correct: 0,
+    //   },
+    //   {
+    //     id: "1",
+    //     question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+    //     answears: ["Lorem ipsum", "dolor sit amet", "adipisicing elit"],
+    //     correct: 0,
+    //   },
+    //   {
+    //     id: "2",
+    //     question: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+    //     image: "https://source.unsplash.com/random/700x400",
+    //     answears: [
+    //       "Lorem ipsum",
+    //       "dolor sit amet",
+    //       "adipisicing elit",
+    //       "Suscipit maiores",
+    //     ],
+    //     correct: 0,
+    //   },
+    // ],
+    questions: null,
     result: null,
   };
+
+  componentDidMount() {
+    axios
+      .get("https://us-central1-mine-mystery.cloudfunctions.net/getRandom")
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          questions: res.data,
+        });
+      });
+  }
 
   nextPage = (result) => {
     this.setState((prevState) => {
@@ -74,7 +87,7 @@ class Root extends React.Component {
   render() {
     return (
       <>
-        <NavBar name="Mine Mystery" logoHref="/"/>
+        <NavBar name="Mine Mystery" logoHref="/" />
         <div className={styles.content}>
           {this.state.currentPage === pages.startPage ? (
             <StartView exitFn={this.nextPage} />
@@ -90,7 +103,9 @@ class Root extends React.Component {
             />
           )}
         </div>
-        <Footer href="https://github.com/dragenet/mine_mystery">View source on Github</Footer>
+        <Footer href="https://github.com/dragenet/mine_mystery">
+          View source on Github
+        </Footer>
       </>
     );
   }
